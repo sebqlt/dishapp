@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Dish Menu
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+<h3 text-center>Select yout favorite dishes</h3>
+<!--dishGroup est une variable avec un nom arbitraire-->
+<ion-list *ngFor="let dishGroup of dishCollection">
+  <ion-item>
+    <ion-label>
+      <h2>{{dishGroup.category|uppercase}}</h2>
+      <p>{{dishGroup.dishes.length}} items</p>
+    </ion-label>
+  </ion-item>
+  <ion-card *ngFor="let dishDetail of dishGroup.dishes; let i=index">
+    <ion-card-header>
+      <p class="dishtitle">{{i+1}} {{dishDetail.item}}</p>
+    </ion-card-header>
+    <ion-card-content>
+      <img src={{dishDetail.img}}>
+      <p>{{dishDetail.desc}}</p>
+    </ion-card-content>
+    <ion-row>
+      <ion-col text-right>
+        <ion-button fill="clear" size="small"
+        (click)="onAddToFavorite(dishDetail)"
+        *ngIf="!isFavorite(dishDetail)">Favorite</ion-button>
+        <ion-button fill="clear" size="small" color="danger"
+        (click)="onRemoveFavorite(dishDetail)"
+        *ngIf="isFavorite(dishDetail)">Unfavorite</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-card>
+</ion-list>
+</ion-content>

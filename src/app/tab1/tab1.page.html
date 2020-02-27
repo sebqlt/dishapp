@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Favorite Dishes
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-list *ngFor="let dish of dishes">
+      <ion-item-sliding>
+        <ion-item [routerLink]="['/','dishdetail',dish.id]">
+          <ion-label>
+            <h2>{{dish.item}}</h2>
+            <p>{{dish.desc}}</p>
+          </ion-label>
+        </ion-item>
+      <ion-item-options side="start">
+        <ion-item-option
+        (click)="onRemoveFromFavorite(dish)"
+        color="danger">
+        <ion-icon name="trash"></ion-icon>
+        Remove
+        </ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+    </ion-list>
+</ion-content>
